@@ -1,0 +1,36 @@
+{
+  "html_output_path": "../src/",
+  "image_output_path": "../assets/",
+  "fonts": [
+    {
+      "aifont": "Roboto-Regular",
+      "family": "Roboto,arial,helvetica,sans-serif",
+      "weight": "",
+      "style": ""
+    },
+    {
+      "aifont": "Roboto-Thin",
+      "family": "Roboto,arial,helvetica,sans-serif",
+      "weight": "100",
+      "style": ""
+    },
+    {
+      "aifont": "Roboto-Bold",
+      "family": "Roboto,arial,helvetica,sans-serif",
+      "weight": "700",
+      "style": ""
+    },
+    {
+      "aifont": "Roboto-Italic",
+      "family": "Roboto,arial,helvetica,sans-serif",
+      "weight": "",
+      "style": "italic"
+    },
+    {
+      "aifont": "Roboto-Medium",
+      "family": "Roboto,arial,helvetica,sans-serif",
+      "weight": "500",
+      "style": "italic"
+    }
+  ]
+}

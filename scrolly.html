@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      #scrolly {
+        position: relative;
+      }
+
+      .scrolly-overlay {
+        position: relative;
+        padding: 0;
+        max-width: 35rem;
+        margin: 0 auto;
+      }
+
+      .sticky-thing {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+        width: 100%;
+        margin: 0 auto ;
+        z-index: 0;
+        top: 0;
+        /* Center everything inside */
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .step {
+        margin: 0 auto 2rem auto;
+        margin-bottom: 25rem;
+        background-color: #fff;
+        color: black;
+      }
+
+      .step p {
+        text-align: center;
+        padding: 1rem;
+		    font-family: Georgia,serif;
+        font-size: 1rem;
+      }
+
+      .hidden { 
+        visibility: hidden; 
+        opacity:0;
+      }
+
+      
+      .fade_in {
+        visibility: visible;
+        opacity: 1;
+        transition:opacity 1.5s;
+      }
+
+      img {
+        max-width: 100%;
+        max-height: 100vh;
+        height: auto;
+      }
+
+      .spacer_margin {
+        margin-bottom: 0 !important;
+      }
+
+	  /* When it's less than 700 pixels wide, do normal scrollytelling */
+	  @media only screen and (min-width: 700px) {
+		#scrolly.side-by-side {
+			display: flex;
+		}
+
+		#scrolly.side-by-side > div {
+			flex-basis: 0;
+			flex-grow: 1;
+			flex-shrink: 1;
+			padding: 0.75em;
+		}
+
+		#scrolly.side-by-side .scrolly-overlay {
+			margin-top: 70vh;
+			order: 0;
+			/* Change these to adjust sizing options */
+			min-width: 15rem;
+			max-width: 20rem;
+		}
+
+		#scrolly.side-by-side .sticky-thing {
+			order: 1;
+			flex-grow: 2;
+		}
+	  }
+	</style>
+	<script src="https://unpkg.com/intersection-observer@0.5.1/intersection-observer.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/scrollama/3.0.4/scrollama.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.3.0/d3.min.js"></script>
+	
+  </head>
+
+  <body>
+      <section id="image1">
+        <div class="sticky-thing" id="image">
+          <img src="https://cloudfront-us-east-1.images.arcpublishing.com/spectator/EMGKKNG5ORAELMLPGE36INQ6MY.jpg" alt="Public safety">
+        </div>
+
+        <div class="scrolly-overlay">
+          <div class="step" id="step-zero">
+            <p>A culture of fear and retaliation.</p>
+          </div>
+          <div class="step" id="step-one">
+            <p>“Erratic, unprofessional, uncivil, and unethical” behavior.</p>
+          </div>
+          <div class="step" id="step-two">
+            <p>Routine surveillance of Columbia employees using video cameras and building swipes, “without justification or provocation.”</p>
+          </div>
+          <div class="step" id="step-three">
+            <p>At least one case allegedly involved an undergraduate student.</p>
+          </div>
+          <div class="step" id="step-four">
+            <p>These are just a handful of a slew of damning allegations in an anonymous complaint filed with the Office of University Compliance in September.</p>
+           </div>		  
+        </div>
+		
+      </section> 
+      
+
+<script>
+    d3.selectAll("#step-four").classed('spacer_margin', true) 
+    const scroller = scrollama();
+
+	scroller
+		.setup({
+			step: "#scrolly .scrolly-overlay .step",
+			offset: 0.5,
+			debug: false
+		})
+		.onStepEnter(function({ element, index, direction}) {
+			const event = new CustomEvent('stepin', { detail: { direction: direction } })
+			element.dispatchEvent(event);
+		})
+		.onStepExit(function({ element, index, direction }) {
+			const event = new CustomEvent('stepout', { detail: { direction: direction } })
+			element.dispatchEvent(event);
+		});
+
+	window.addEventListener("resize", scroller.resize);
+    </script>
+
+    <!-- ai2html resizer script -->
+
+<script type="text/javascript">
+  (function() {
+      // only want one resizer on the page
+      if (document.documentElement.className.indexOf("g-resizer-v3-init") > -1) return;
+      document.documentElement.className += " g-resizer-v3-init";
+      // require IE9+
+      if (!("querySelector" in document)) return;
+      function resizer() {
+          var elements = Array.prototype.slice.call(document.querySelectorAll(".g-artboard[data-min-width]")),
+              widthById = {};
+          elements.forEach(function(el) {
+              var parent = el.parentNode,
+                  width = widthById[parent.id] || parent.getBoundingClientRect().width,
+                  minwidth = el.getAttribute("data-min-width"),
+                  maxwidth = el.getAttribute("data-max-width");
+            
+              widthById[parent.id] = width;
+              console.log(minwidth);
+              console.log(maxwidth);
+              if (+minwidth <= width && (+maxwidth >= width || maxwidth === null)) {
+                  el.style.display = "block";
+              } else {
+                  el.style.display = "none";
+              }
+          });
+          try {
+              if (window.parent && window.parent.$) {
+                  window.parent.$("body").trigger("resizedcontent", [window]);
+              }
+              if (window.require) {
+                  require(['foundation/main'], function() {
+                      require(['shared/interactive/instances/app-communicator'], function(AppCommunicator) {
+                          AppCommunicator.triggerResize();
+                      });
+                  });
+              }
+          } catch(e) { console.log(e); }
+      }
+
+      document.addEventListener('DOMContentLoaded', resizer);
+      // feel free to replace throttle with _.throttle, if available
+      window.addEventListener('resize', throttle(resizer, 200));        
+
+      function throttle(func, wait) {
+          // from underscore.js
+          var _now = Date.now || function() { return new Date().getTime(); },
+              context, args, result, timeout = null, previous = 0;
+          var later = function() {
+              previous = _now();
+              timeout = null;
+              result = func.apply(context, args);
+              if (!timeout) context = args = null;
+          };
+          return function() {
+              var now = _now(), remaining = wait - (now - previous);
+              context = this;
+              args = arguments;
+              if (remaining <= 0 || remaining > wait) {
+                  if (timeout) {
+                      clearTimeout(timeout);
+                      timeout = null;
+                  }
+                  previous = now;
+                  result = func.apply(context, args);
+                  if (!timeout) context = args = null;
+              } else if (!timeout && options.trailing !== false) {
+                  timeout = setTimeout(later, remaining);
+              }
+              return result;
+          };
+      }
+
+     
+  })();
+</script>
+
+  </body>
+</html>
