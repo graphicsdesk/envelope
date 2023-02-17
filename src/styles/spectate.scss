@@ -422,11 +422,23 @@ header {
   height: 20px;
 }
 
+@media only screen and (max-width: 1199px) {
+  .sticky-thing{
+    img{
+      height:100vh !important;
+    }
+  }
+}
+
 .image {
-  margin: 30px auto 25px auto;
+  //margin: 30px auto 25px auto;
 
   img {
-    width: 100%;
+    width: 90%;
+    max-height: 80% !important;
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
   }
 
   .image-caption-text {
@@ -477,6 +489,9 @@ header {
 
 .graphic {
   margin: 30px auto;
+  img{
+    max-height: 100% !important;
+  }
 }
 
 .story-top .graphic:only-child {
@@ -506,4 +521,7 @@ header {
     margin-top: 29px;
     margin-bottom: 30px;
   }
+}
+#step-zero{
+  margin-top:-30vh !important;
 }

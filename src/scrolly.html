@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      #scrolly {
+        position: relative;
+      }
+
+      .scrolly-overlay {
+        position: relative;
+        padding: 0;
+        max-width: 35rem;
+        margin: 0 auto;
+      }
+
+      .sticky-thing {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+        width: 100%;
+        margin: 0 auto ;
+        z-index: 0;
+        top: 0;
+        /* Center everything inside */
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .step {
+        margin: 0 auto 2rem auto;
+        margin-bottom: 25rem;
+        background-color: #fff;
+        color: black;
+      }
+
+      .step p {
+        text-align: center;
+        padding: 1rem;
+		    font-family: Georgia,serif;
+        font-size: 1rem;
+      }
+
+      .hidden { 
+        visibility: hidden; 
+        opacity:0;
+      }
+
+      
+      .fade_in {
+        visibility: visible;
+        opacity: 1;
+        transition:opacity 1.5s;
+      }
+
+      img {
+        max-width: 100%;
+        max-height: 100vh;
+        height: auto;
+      }
+
+      .spacer_margin {
+        margin-bottom: 0 !important;
+      }
+
+	  /* When it's less than 700 pixels wide, do normal scrollytelling */
+	  @media only screen and (min-width: 700px) {
+		#scrolly.side-by-side {
+			display: flex;
+		}
+
+		#scrolly.side-by-side > div {
+			flex-basis: 0;
+			flex-grow: 1;
+			flex-shrink: 1;
+			padding: 0.75em;
+		}
+
+		#scrolly.side-by-side .scrolly-overlay {
+			margin-top: 70vh;
+			order: 0;
+			/* Change these to adjust sizing options */
+			min-width: 15rem;
+			max-width: 20rem;
+		}
+
+		#scrolly.side-by-side .sticky-thing {
+			order: 1;
+			flex-grow: 2;
+		}
+	  }
+    #step-five{
+      opacity:0;
+    }
+    #step-zero{
+      margin-top:-60vh !important;
+    }
+	</style>
+	<script src="https://unpkg.com/intersection-observer@0.5.1/intersection-observer.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/scrollama/3.0.4/scrollama.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.3.0/d3.min.js"></script>
+	
+  </head>
+
+  <body>
+      <section id="image1">
+        <div class="sticky-thing" id="image">
+          <img src="https://cloudfront-us-east-1.images.arcpublishing.com/spectator/EMGKKNG5ORAELMLPGE36INQ6MY.jpg" alt="Public safety">
+        </div>
+
+        <div class="scrolly-overlay">
+          <div class="step" id="step-zero">
+            <p>A culture of fear and retaliation.</p>
+          </div>
+          <div class="step" id="step-one">
+            <p>“Erratic, unprofessional, uncivil, and unethical” behavior.</p>
+          </div>
+          <div class="step" id="step-two">
+            <p>Routine surveillance of Columbia employees using video cameras and building swipes, “without justification or provocation.”</p>
+          </div>
+          <div class="step" id="step-three">
+            <p>At least one case allegedly involved an undergraduate student.</p>
+          </div>
+          <div class="step" id="step-four">
+            <p>These are just a handful of a slew of damning allegations in an anonymous complaint filed with the Office of University Compliance in September.</p>
+           </div>
+           <div class="step" id="step-five">
+            <p>These are just a handful of a slew of damning allegations</p>
+           </div>		  		  
+        </div>
+		
+      </section> 
+      
+
+<script src="./scripts/ai2html-resizer.js"></script>
+<script src="./scripts/scrollscript.js"></script>
+
+
+
+  </body>
+</html>
